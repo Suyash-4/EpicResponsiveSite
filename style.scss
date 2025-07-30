@@ -1,0 +1,246 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Chillax-Light";
+  src: url("../EpicResponsiveSite/fonts/Chillax-Light.woff2") format("woff2"),
+    url("../EpicResponsiveSite/fonts/Chillax-Light.woff") format("woff"),
+    url("../EpicResponsiveSite/fonts/Chillax-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi-Light";
+  src: url("../EpicResponsiveSite/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Light.woff2")
+      format("woff2"),
+    url("../EpicResponsiveSite/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Light.woff")
+      format("woff"),
+    url("../EpicResponsiveSite/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Light.ttf")
+      format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  background-color: #0e0e0e;
+  color: #e9d2b2;
+  font-family: "Chillax-Light";
+}
+
+main {
+  width: 100%;
+}
+nav {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  .container {
+    display: flex;
+    border: 1px solid transparent;
+    background: rgba(36, 34, 32, 0.36);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(15.2px);
+    -webkit-backdrop-filter: blur(15.2px);
+    padding: 1rem 2rem;
+    .text {
+      display: flex;
+      font-size: 1rem;
+      gap: 1rem;
+
+      p {
+        font-size: 1.85rem;
+        font-weight: 200;
+      }
+      ul {
+        display: flex;
+        list-style: none;
+        color: #e9d2b2;
+        gap: 2rem;
+        margin: 0;
+        padding: 0.5rem;
+        li {
+          a {
+            text-decoration: none;
+            color: #e9d2b2;
+            font-size: 0.85rem;
+            font-weight: 500;
+          }
+        }
+      }
+      button {
+        padding: 0.5rem 1rem;
+        background-color: #e9d2b2;
+        border: none;
+        border-radius: 3px;
+      }
+    }
+  }
+}
+// Code for Mobile
+.view-1 {
+  width: 100%;
+  padding: 1rem 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // 1 rem = 16px
+  h1 {
+    font-size: 3.5rem;
+    text-align: center;
+    font-family: "Satoshi-Light";
+    font-weight: 200;
+  }
+
+  p {
+    margin-top: 0.9rem;
+    line-height: 1.5; //50% increase in line height
+    text-align: center;
+    font-size: 1.1rem;
+    opacity: 0.7;
+    br {
+      display: none; // hide the br tag on mobile
+    }
+  }
+
+  img {
+    width: 80%;
+    object-fit: cover;
+  }
+}
+
+// same code now for bigger screens using media queries
+
+.view-2 {
+  width: 100%;
+  margin-top: 3rem;
+  padding: 4rem 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .marquee {
+    display: flex;
+    overflow: hidden;
+    width: 80%;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 10%;
+      top: 0;
+      right: 0;
+      z-index: 1;
+      background-image: linear-gradient(to left, #0e0e0e, transparent);
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 10%;
+      top: 0;
+      left: 0;
+      background-image: linear-gradient(to right, #0e0e0e, transparent);
+    }
+    // gap: 5rem;
+    .text {
+      display: flex;
+      padding: 0 1.5rem;
+      gap: 5rem;
+      animation: marquee 20s linear infinite;
+      p {
+        font-size: 1.5rem;
+        font-weight: 200;
+      }
+    }
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (min-width: 1020px) {
+  html {
+    font-size: clamp(
+      16px,
+      1vw,
+      20px
+    ); // font-size will be between 16px and 20px depending on the screen size. Basically its like setting a maximum and minimum font size limit.
+  }
+
+  .view-1 {
+    img {
+      width: 30%;
+      object-fit: cover;
+    }
+    h1 {
+      font-size: 7rem;
+    }
+    p {
+      width: 40%;
+      margin-top: 1.5rem;
+      font-size: 1.5rem;
+      text-align: center;
+      br {
+        display: block;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    width: 100%;
+    padding: 2rem 1rem;
+    .container {
+      width: 100%;
+      position: relative;
+
+      .text {
+        ul {
+          display: none;
+        }
+        button{
+          position: absolute;
+          right: 1rem;
+          top:1.3rem;
+        }
+      }
+    }
+  }
+
+  .view-2{
+    padding: 2rem 1rem;
+    .marquee {
+      width: 100%;
+      .text {
+        gap: 2rem;
+        animation: marquee 10s linear infinite;
+        p {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}
